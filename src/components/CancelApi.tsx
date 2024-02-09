@@ -10,15 +10,14 @@ const CancelApi = () => {
     const api = `https://jsonplaceholder.typicode.com/todos/${count}`;
     const abortController = new AbortController();
     const { signal } = abortController;
-    const fetchData = async () => {
-      await fetch(api, { signal })
+    const fetchData = () =>
+      fetch(api, { signal })
         .then((response) => {
           console.log(response);
         })
         .catch((err) => {
           console.error(`error: ${err.message}`);
         });
-    };
     fetchData();
     return () => {
       abortController.abort();
